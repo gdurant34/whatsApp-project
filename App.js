@@ -21,8 +21,12 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator 
     screenOptions={{headerTitle: ""}}>
-      <Tab.Screen name='ChatList' component={ChatListScreen} />
-      <Tab.Screen name='Settings' component={SettingsScreen} />
+      <Tab.Screen name='ChatList' component={ChatListScreen} options={{
+        tabBarLabel: 'Chats'
+      }}/>
+      <Tab.Screen name='Settings' component={SettingsScreen} options={{
+        tabBarLabel: 'Settings'
+      }} />
     </Tab.Navigator>
   )
 }
