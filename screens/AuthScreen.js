@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import PageContainer from "../components/PageContainer";
 import Input from "../components/Input";
 import { Feather, FontAwesome } from "@expo/vector-icons";
+import SubmitButton from "../components/SubmitButton";
 
 const AuthScreen = props => {
 
@@ -29,6 +30,7 @@ const AuthScreen = props => {
             icon="lock" 
             iconPack={Feather} 
             />
+            <SubmitButton />
         </PageContainer>
 
     </SafeAreaView>
