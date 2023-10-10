@@ -45,6 +45,8 @@ const SignUpForm = (props) => {
       <Input
         id="password"
         label="Password"
+        autoCapitalize='none'
+        secureTextEntry
         icon="lock"
         iconPack={Feather}
         onInputChanged={inputChangedHandler}
