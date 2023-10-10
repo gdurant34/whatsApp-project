@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -13,7 +13,11 @@ import colors from "../constants/colors";
 
 const ChatScreen = (props) => {
   const [messageText, setMessageText] = useState("");
-  console.log(messageText);
+
+
+    const sendMessage = useCallback(() => {
+        setMessageText("");
+    }, [messageText])
 
   return (
     <SafeAreaView edges={["right", "left", "bottom"]} style={styles.container}>
@@ -24,7 +28,7 @@ const ChatScreen = (props) => {
       <View style={styles.inputContainer}>
         <TouchableOpacity
           onPress={() => console.log("Pressed!")}
-          styles={styles.mediaButton}
+          style={styles.mediaButton}
         >
           <Feather name="plus" size={24} color={colors.blue} />
         </TouchableOpacity>
@@ -32,21 +36,22 @@ const ChatScreen = (props) => {
           style={styles.textbox}
           value={messageText}
           onChangeText={(text) => setMessageText(text)}
+          onSubmitEditing={sendMessage}
         />
         {messageText === "" && (
           <TouchableOpacity
             onPress={() => console.log("Pressed!")}
-            styles={styles.mediaButton}
+            style={styles.mediaButton}
           >
             <Feather name="camera" size={24} color={colors.blue} />
           </TouchableOpacity>
         )}
         {messageText !== "" && (
           <TouchableOpacity
-            onPress={() => console.log("Pressed!")}
-            styles={styles.mediaButton}
+          style={{ ...styles.mediaButton, ...styles.sendButton }}
+          onPress={sendMessage}
           >
-            <Feather name="send" size={24} color={colors.blue} />
+            <Feather name="send" size={20} color={'white'} />
           </TouchableOpacity>
         )}
       </View>
@@ -81,6 +86,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 35,
   },
+  sendButton: {
+    backgroundColor: colors.blue,
+    borderRadius: 50,
+    padding: 8,
+    width: 35
+  }
 });
 
 export default ChatScreen;
