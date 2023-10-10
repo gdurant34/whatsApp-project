@@ -8,13 +8,20 @@ const Input = (props) => {
 
       <View style={styles.inputContainer}>
         {props.icon && (
-          <props.iconPack 
-          name={props.icon} 
-          size={props.iconSize || 15} 
-          style={styles.icon} />
+          <props.iconPack
+            name={props.icon}
+            size={props.iconSize || 15}
+            style={styles.icon}
+          />
         )}
-        <TextInput style={styles.input}/>
+        <TextInput style={styles.input} />
       </View>
+
+      {props.errorText && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{props.errorText}</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -27,7 +34,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontFamily: "bold",
     letterSpacing: 0.3,
-    color: colors.textColor
+    color: colors.textColor,
   },
   inputContainer: {
     width: "100%",
@@ -37,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: colors.nearlyWhite,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   icon: {
     marginRight: 10,
@@ -48,8 +55,17 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: "regular",
     letterSpacing: 0.3,
-    paddingTop: 0
-  }
+    paddingTop: 0,
+  },
+  errorContainer: {
+    marginVertical: 5,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 13,
+    fontFamily: "regular",
+    letterSpacing: 0.3,
+  },
 });
 
 export default Input;

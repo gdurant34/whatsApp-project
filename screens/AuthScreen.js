@@ -12,7 +12,8 @@ const AuthScreen = props => {
             <Input 
             label="First name" 
             icon="user-o" 
-            iconPack={FontAwesome} />
+            iconPack={FontAwesome} 
+            />
         </PageContainer>
 
     </SafeAreaView>
