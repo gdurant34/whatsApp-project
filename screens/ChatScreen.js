@@ -4,6 +4,8 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import backgroundImage from "../assets/images/droplet.jpeg";
 import { TextInput } from "react-native-gesture-handler";
@@ -14,47 +16,53 @@ import colors from "../constants/colors";
 const ChatScreen = (props) => {
   const [messageText, setMessageText] = useState("");
 
-
-    const sendMessage = useCallback(() => {
-        setMessageText("");
-    }, [messageText])
+  const sendMessage = useCallback(() => {
+    setMessageText("");
+  }, [messageText]);
 
   return (
     <SafeAreaView edges={["right", "left", "bottom"]} style={styles.container}>
-      <ImageBackground
-        source={backgroundImage}
-        style={styles.backgroundImage}
-      ></ImageBackground>
-      <View style={styles.inputContainer}>
-        <TouchableOpacity
-          onPress={() => console.log("Pressed!")}
-          style={styles.mediaButton}
-        >
-          <Feather name="plus" size={24} color={colors.blue} />
-        </TouchableOpacity>
-        <TextInput
-          style={styles.textbox}
-          value={messageText}
-          onChangeText={(text) => setMessageText(text)}
-          onSubmitEditing={sendMessage}
-        />
-        {messageText === "" && (
+      <KeyboardAvoidingView 
+      style={styles.screen}
+      behavior={ Platform.OS === "ios" ? "padding" : undefined }
+      keyboardVerticalOffset={100}
+      >
+        <ImageBackground
+          source={backgroundImage}
+          style={styles.backgroundImage}
+        ></ImageBackground>
+
+        <View style={styles.inputContainer}>
           <TouchableOpacity
             onPress={() => console.log("Pressed!")}
             style={styles.mediaButton}
           >
-            <Feather name="camera" size={24} color={colors.blue} />
+            <Feather name="plus" size={24} color={colors.blue} />
           </TouchableOpacity>
-        )}
-        {messageText !== "" && (
-          <TouchableOpacity
-          style={{ ...styles.mediaButton, ...styles.sendButton }}
-          onPress={sendMessage}
-          >
-            <Feather name="send" size={20} color={'white'} />
-          </TouchableOpacity>
-        )}
-      </View>
+          <TextInput
+            style={styles.textbox}
+            value={messageText}
+            onChangeText={(text) => setMessageText(text)}
+            onSubmitEditing={sendMessage}
+          />
+          {messageText === "" && (
+            <TouchableOpacity
+              onPress={() => console.log("Pressed!")}
+              style={styles.mediaButton}
+            >
+              <Feather name="camera" size={24} color={colors.blue} />
+            </TouchableOpacity>
+          )}
+          {messageText !== "" && (
+            <TouchableOpacity
+              style={{ ...styles.mediaButton, ...styles.sendButton }}
+              onPress={sendMessage}
+            >
+              <Feather name="send" size={20} color={"white"} />
+            </TouchableOpacity>
+          )}
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -63,6 +71,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+  },
+  screen: {
+    flex: 1
   },
   backgroundImage: {
     flex: 1,
@@ -90,8 +101,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blue,
     borderRadius: 50,
     padding: 8,
-    width: 35
-  }
+    width: 35,
+  },
+ 
 });
 
 export default ChatScreen;
