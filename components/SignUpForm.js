@@ -24,6 +24,7 @@ const SignUpForm = (props) => {
       <Input
         id="firstName"
         label="First name"
+        autoCapitalize='none'
         icon="user-o"
         iconPack={FontAwesome}
         onInputChanged={inputChangedHandler}
@@ -31,6 +32,7 @@ const SignUpForm = (props) => {
       <Input
         id="lastName"
         label="Last name"
+        autoCapitalize='none'
         icon="user-o"
         iconPack={FontAwesome}
         onInputChanged={inputChangedHandler}
@@ -40,6 +42,8 @@ const SignUpForm = (props) => {
         label="Email"
         icon="mail"
         iconPack={Feather}
+        keyboardType='email-address'
+        autoCapitalize='none'
         onInputChanged={inputChangedHandler}
       />
       <Input
