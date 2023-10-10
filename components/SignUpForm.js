@@ -2,14 +2,14 @@ import React from "react";
 import Input from "../components/Input";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import SubmitButton from "../components/SubmitButton";
-import { validate } from "validate.js";
+import { validateString } from "../utils/validationConstraints";
 
 const SignUpForm = (props) => {
 
 
     const inputChangedHandler = (inputId, inputValue) => {
         if (inputId === 'firstName' || inputId === 'lastName') {
-            console.log(validate({ 'firstName': inputValue }, { 'firstName': { presence: { allowEmpty: false } } }))
+            console.log(validateString(inputId, inputValue))
         }
         else if (inputId === 'email') {
 
