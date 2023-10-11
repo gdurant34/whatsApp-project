@@ -32,6 +32,7 @@ const SignInForm = (props) => {
         icon="mail"
         iconPack={Feather}
         onInputChanged={inputChangedHandler}
+        errorText={formState.inputValidities["email"]}
       />
       <Input
         id="password"
@@ -41,6 +42,7 @@ const SignInForm = (props) => {
         icon="lock"
         iconPack={Feather}
         onInputChanged={inputChangedHandler}
+        errorText={formState.inputValidities["password"]}
       />
       <SubmitButton
         title="Sign in"

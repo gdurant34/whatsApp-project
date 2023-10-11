@@ -36,6 +36,7 @@ const SignUpForm = (props) => {
         icon="user-o"
         iconPack={FontAwesome}
         onInputChanged={inputChangedHandler}
+        errorText={formState.inputValidities["firstName"]}
       />
       <Input
         id="lastName"
@@ -44,6 +45,8 @@ const SignUpForm = (props) => {
         icon="user-o"
         iconPack={FontAwesome}
         onInputChanged={inputChangedHandler}
+        errorText={formState.inputValidities["lastName"]}
+
       />
       <Input
         id="email"
@@ -53,6 +56,7 @@ const SignUpForm = (props) => {
         keyboardType='email-address'
         autoCapitalize='none'
         onInputChanged={inputChangedHandler}
+        errorText={formState.inputValidities["email"]}
       />
       <Input
         id="password"
@@ -62,6 +66,7 @@ const SignUpForm = (props) => {
         icon="lock"
         iconPack={Feather}
         onInputChanged={inputChangedHandler}
+        errorText={formState.inputValidities["password"]}
       />
       <SubmitButton
         title="Sign up"
